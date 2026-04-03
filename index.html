@@ -58,6 +58,20 @@
 
   /* Icon circle */
   .icon-circle{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  /* Value Bridge diagram */
+  .vb-center{position:relative;display:flex;align-items:center;justify-content:center;}
+  .vb-core{background:linear-gradient(135deg,#6366f1,#8b5cf6,#06b6d4);border-radius:20px;padding:20px 28px;font-weight:800;font-size:1.1rem;color:#fff;text-align:center;box-shadow:0 0 40px rgba(99,102,241,.5),0 0 80px rgba(6,182,212,.2);position:relative;z-index:2;}
+  .vb-shared{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(249,115,22,.15));border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:14px 20px;text-align:center;position:relative;}
+  .vb-col-left .vb-node{border-left:2px solid rgba(99,102,241,.4);}
+  .vb-col-right .vb-node{border-right:2px solid rgba(6,182,212,.4);}
+  .vb-node{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 16px;transition:all .3s;}
+  .vb-node:hover{background:rgba(255,255,255,.08);transform:translateX(0) scale(1.02);}
+  .connector{position:absolute;top:50%;transform:translateY(-50%);height:2px;background:linear-gradient(90deg,rgba(99,102,241,.6),rgba(6,182,212,.6));z-index:1;}
+  @keyframes dashflow{to{stroke-dashoffset:-20;}}
+  .flow-line{stroke-dasharray:6 4;animation:dashflow 1.2s linear infinite;}
+  @keyframes pulse-ring{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
+  .pulse-core{animation:pulse-ring 3s ease-in-out infinite;}
 </style>
 </head>
 <body>
@@ -84,7 +98,7 @@
     </p>
     <div class="reveal reveal-d3 flex gap-4 justify-center flex-wrap">
       <button class="btn-primary" onclick="document.getElementById('slide-1').scrollIntoView({behavior:'smooth'})">Explore the Proposal</button>
-      <button class="btn-outline" onclick="document.getElementById('slide-6').scrollIntoView({behavior:'smooth'})">Jump to CTA →</button>
+      <button class="btn-outline" onclick="document.getElementById('slide-7').scrollIntoView({behavior:'smooth'})">Jump to CTA →</button>
     </div>
     <p class="reveal reveal-d4 text-slate-600 text-sm mt-12">Scroll to navigate ↓</p>
   </div>
@@ -309,13 +323,106 @@
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 6 — PLATFORM OVERVIEW
+     SLIDE 6 — VALUE BRIDGE
 ═══════════════════════════════════════ -->
 <section id="slide-5" class="bg-grid">
+  <div class="blob w-80 h-80 bg-violet-700 top-0 left-0"></div>
+  <div class="blob w-72 h-72 bg-cyan-700 bottom-0 right-0"></div>
+  <div class="max-w-6xl px-6 w-full z-10">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <p class="reveal text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">06 / Value Bridge</p>
+      <h2 class="reveal reveal-d1 text-3xl md:text-4xl font-bold"><span class="neon">Engineer-Driven.</span> Business-Proven.</h2>
+      <p class="reveal reveal-d2 text-slate-400 text-sm mt-2 max-w-xl mx-auto">Aero AI is built for the teams who build — and automatically delivers the outcomes that leadership demands. One platform, zero compromise.</p>
+    </div>
+
+    <!-- Bridge Layout -->
+    <div class="reveal reveal-d2 grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
+
+      <!-- LEFT: Technical / Engineers -->
+      <div class="vb-col-left md:col-span-4 flex flex-col gap-3">
+        <div class="glass px-4 py-2 rounded-xl text-center mb-1">
+          <span class="text-indigo-300 font-bold text-xs uppercase tracking-widest">⚙ Engineers &amp; IT Teams</span>
+        </div>
+        <div class="vb-node">
+          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Manual labeling overhead</p>
+          <p class="text-slate-400 text-xs">→ <span class="text-white">70% reduction</span> via AI-assisted annotation</p>
+        </div>
+        <div class="vb-node">
+          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Complex hyperparameter tuning</p>
+          <p class="text-slate-400 text-xs">→ <span class="text-white">One-Click Training</span>, no ML expertise needed</p>
+        </div>
+        <div class="vb-node">
+          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Multi-hardware deployment chaos</p>
+          <p class="text-slate-400 text-xs">→ <span class="text-white">Hardware-agnostic</span> deploy across NVIDIA, Intel, ARM</p>
+        </div>
+      </div>
+
+      <!-- CENTER: Aero AI Core + SVG connectors -->
+      <div class="md:col-span-3 flex flex-col items-center gap-4">
+        <!-- Shared Value Node at TOP -->
+        <div class="vb-shared w-full reveal reveal-d3">
+          <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">✦ Shared Goal</div>
+          <p class="text-slate-200 font-semibold text-sm leading-snug">Optimize time &amp; effort to<br/>train &amp; deploy AI on Edge</p>
+          <p class="text-slate-500 text-xs mt-1">with best-in-class results</p>
+        </div>
+
+        <!-- SVG flow lines -->
+        <svg class="w-full" style="height:36px;overflow:visible;" viewBox="0 0 200 36" preserveAspectRatio="none">
+          <line class="flow-line" x1="20" y1="0" x2="100" y2="36" stroke="rgba(245,158,11,0.5)" stroke-width="1.5"/>
+          <line class="flow-line" x1="180" y1="0" x2="100" y2="36" stroke="rgba(245,158,11,0.5)" stroke-width="1.5"/>
+        </svg>
+
+        <!-- Core node -->
+        <div class="vb-core pulse-core text-center">
+          <div class="text-xs font-medium opacity-70 mb-1 tracking-widest">POWERED BY</div>
+          <div class="text-xl font-black">Aero AI</div>
+          <div class="text-xs opacity-60 mt-1">End-to-End CV Platform</div>
+        </div>
+
+        <!-- SVG flow lines down -->
+        <svg class="w-full" style="height:36px;overflow:visible;" viewBox="0 0 200 36" preserveAspectRatio="none">
+          <line class="flow-line" x1="100" y1="0" x2="20" y2="36" stroke="rgba(99,102,241,0.5)" stroke-width="1.5"/>
+          <line class="flow-line" x1="100" y1="0" x2="180" y2="36" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        </svg>
+
+        <!-- Outcome badge -->
+        <div class="glass rounded-xl px-4 py-2 text-center w-full">
+          <p class="text-xs text-slate-400">Outcome</p>
+          <p class="text-sm font-bold text-white">Faster · Smarter · Secure</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Business / Decision Makers -->
+      <div class="vb-col-right md:col-span-4 flex flex-col gap-3">
+        <div class="glass px-4 py-2 rounded-xl text-center mb-1">
+          <span class="text-cyan-300 font-bold text-xs uppercase tracking-widest">💼 Business &amp; Executives</span>
+        </div>
+        <div class="vb-node text-right">
+          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Reduce AI project cost</p>
+          <p class="text-slate-400 text-xs"><span class="text-white">3× faster</span> time-to-market ←</p>
+        </div>
+        <div class="vb-node text-right">
+          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Ensure data sovereignty</p>
+          <p class="text-slate-400 text-xs"><span class="text-white">100% on-premise</span>, zero cloud risk ←</p>
+        </div>
+        <div class="vb-node text-right">
+          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Guarantee compliance</p>
+          <p class="text-slate-400 text-xs"><span class="text-white">Regulatory-ready</span> architecture ←</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 7 — PLATFORM OVERVIEW
+═══════════════════════════════════════ -->
+<section id="slide-6" class="bg-grid">
   <div class="blob w-72 h-72 bg-purple-700 top-0 left-0"></div>
   <div class="max-w-5xl px-8 w-full z-10">
     <div class="mb-10">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">06 / Platform</p>
+      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">07 / Platform</p>
       <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">What You <span class="neon">Get</span></h2>
     </div>
     <div class="grid md:grid-cols-3 gap-5">
@@ -354,13 +461,13 @@
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 7 — CTA
+     SLIDE 8 — CTA
 ═══════════════════════════════════════ -->
-<section id="slide-6" class="bg-grid">
+<section id="slide-7" class="bg-grid">
   <div class="blob w-96 h-96 bg-indigo-700 top-0 left-1/2 -translate-x-1/2"></div>
   <div class="blob w-64 h-64 bg-cyan-700 bottom-0 right-0"></div>
   <div class="max-w-3xl px-8 text-center z-10">
-    <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-4">07 / Next Steps</p>
+    <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-4">08 / Next Steps</p>
     <h2 class="reveal reveal-d1 text-5xl md:text-6xl font-black mb-6">Let's Build Your <span class="neon">AI Future</span></h2>
     <p class="reveal reveal-d2 text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
       Experience the Aero AI platform in your own environment. Schedule a personalized demo or pilot a <strong class="text-white">Proof of Concept (PoC)</strong> to transform your vision data into actionable, secure intelligence.
