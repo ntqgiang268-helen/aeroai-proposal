@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aero AI – Enterprise Computer Vision Proposal</title>
-<meta name="description" content="Aero AI: End-to-End AI Computer Vision Platform for enterprise edge deployment."/>
+<title>Aero AI – Edge AI Platform</title>
+<meta name="description" content="Aero AI: Train your AI model. Deploy it on your edge device. No ML team required."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -12,71 +12,75 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-snap-type:y mandatory;overflow-y:scroll;scroll-behavior:smooth;}
   body{font-family:'Inter',sans-serif;background:#050814;color:#e2e8f0;}
-  section{scroll-snap-align:start;height:100vh;width:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  section{scroll-snap-align:start;min-height:100vh;width:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 
-  /* Animated background gradient */
   .bg-grid{background-image:linear-gradient(rgba(99,102,241,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.07) 1px,transparent 1px);background-size:48px 48px;}
-
-  /* Glow blobs */
   .blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none;}
-
-  /* Glass card */
   .glass{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:16px;}
-
-  /* Neon text */
   .neon{background:linear-gradient(135deg,#6366f1,#8b5cf6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .neon-cyan{background:linear-gradient(135deg,#06b6d4,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .neon-amber{background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-  /* Number badge */
-  .badge{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
-
-  /* Entrance animation */
-  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
-  .reveal-d1{transition-delay:.1s;}
-  .reveal-d2{transition-delay:.2s;}
-  .reveal-d3{transition-delay:.3s;}
-  .reveal-d4{transition-delay:.4s;}
-  .reveal-d5{transition-delay:.5s;}
+  .reveal-d1{transition-delay:.1s;} .reveal-d2{transition-delay:.2s;}
+  .reveal-d3{transition-delay:.3s;} .reveal-d4{transition-delay:.4s;} .reveal-d5{transition-delay:.5s;}
 
-  /* Slide counter nav */
-  #nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:10px;}
-  #nav button{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s;}
-  #nav button.active{background:linear-gradient(135deg,#6366f1,#06b6d4);transform:scale(1.4);}
+  #nav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:9px;}
+  #nav button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,.18);cursor:pointer;transition:all .3s;}
+  #nav button.active{background:linear-gradient(135deg,#6366f1,#06b6d4);transform:scale(1.5);}
 
-  /* Bento grid */
-  .bento{display:grid;gap:14px;}
-  .span2{grid-column:span 2;}
-
-  /* Progress bar */
   .bar-fill{height:6px;border-radius:4px;background:linear-gradient(90deg,#6366f1,#06b6d4);}
-
-  /* CTA Button */
   .btn-primary{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;padding:14px 32px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;color:#fff;transition:opacity .2s,transform .2s;}
   .btn-primary:hover{opacity:.85;transform:translateY(-2px);}
   .btn-outline{border:1px solid rgba(99,102,241,.5);border-radius:10px;padding:14px 32px;font-weight:500;font-size:.95rem;background:transparent;color:#a5b4fc;cursor:pointer;transition:all .2s;}
   .btn-outline:hover{border-color:#6366f1;background:rgba(99,102,241,.1);}
-
-  /* Icon circle */
   .icon-circle{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-  /* Value Bridge diagram */
-  .vb-center{position:relative;display:flex;align-items:center;justify-content:center;}
-  .vb-core{background:linear-gradient(135deg,#6366f1,#8b5cf6,#06b6d4);border-radius:20px;padding:20px 28px;font-weight:800;font-size:1.1rem;color:#fff;text-align:center;box-shadow:0 0 40px rgba(99,102,241,.5),0 0 80px rgba(6,182,212,.2);position:relative;z-index:2;}
-  .vb-shared{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(249,115,22,.15));border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:14px 20px;text-align:center;position:relative;}
-  .vb-col-left .vb-node{border-left:2px solid rgba(99,102,241,.4);}
-  .vb-col-right .vb-node{border-right:2px solid rgba(6,182,212,.4);}
-  .vb-node{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 16px;transition:all .3s;}
-  .vb-node:hover{background:rgba(255,255,255,.08);transform:translateX(0) scale(1.02);}
-  .connector{position:absolute;top:50%;transform:translateY(-50%);height:2px;background:linear-gradient(90deg,rgba(99,102,241,.6),rgba(6,182,212,.6));z-index:1;}
+  /* Workflow pipeline */
+  .step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#fff;flex-shrink:0;}
+  .step-arrow{color:rgba(99,102,241,.4);font-size:1.2rem;text-align:center;line-height:1;}
+
+  /* Value bridge */
+  @keyframes pulse-ring{0%,100%{box-shadow:0 0 30px rgba(99,102,241,.4);}50%{box-shadow:0 0 60px rgba(99,102,241,.7),0 0 100px rgba(6,182,212,.3);}}
+  .vb-core{background:linear-gradient(135deg,#6366f1,#8b5cf6,#06b6d4);border-radius:18px;padding:18px 24px;font-weight:800;color:#fff;text-align:center;animation:pulse-ring 3s ease-in-out infinite;}
   @keyframes dashflow{to{stroke-dashoffset:-20;}}
   .flow-line{stroke-dasharray:6 4;animation:dashflow 1.2s linear infinite;}
-  @keyframes pulse-ring{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
-  .pulse-core{animation:pulse-ring 3s ease-in-out infinite;}
+
+  /* Gap cards */
+  .gap-card{border-left:3px solid rgba(99,102,241,.5);}
+
+  /* Tier cards */
+  .tier-popular{border:1px solid rgba(99,102,241,.5);background:rgba(99,102,241,.06);}
+
+  /* Upcoming badge */
+  .badge-upcoming{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fbbf24;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em;}
+
+  /* Proof line */
+  .proof{border-left:2px solid rgba(16,185,129,.3);padding-left:10px;margin-top:8px;}
+
+  /* Lightbox */
+  #lightbox{position:fixed;inset:0;background:rgba(5,8,20,0.9);backdrop-filter:blur(10px);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s ease;}
+  #lightbox.active{opacity:1;pointer-events:auto;}
+  #lb-img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);transform:scale(0.95);transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);}
+  #lightbox.active #lb-img{transform:scale(1);}
+  .thumb-wrap{cursor:pointer;cursor:zoom-in;transition:border-color 0.3s;}
+  .thumb-wrap:hover{border-color:rgba(99,102,241,0.8) !important;box-shadow:0 0 20px rgba(99,102,241,0.15);}
+  .thumb-img{transition:transform 0.4s ease;}
+  .thumb-wrap:hover .thumb-img{transform:scale(1.05);}
+
+  /* Video Modal */
+  #video-modal{position:fixed;inset:0;background:rgba(5,8,20,0.95);backdrop-filter:blur(15px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s ease;}
+  #video-modal.active{opacity:1;pointer-events:auto;}
+  #demo-video{border-radius:12px;box-shadow:0 25px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(99,102,241,0.3);transform:scale(0.95);transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);background:#000;outline:none;}
+  #video-modal.active #demo-video{transform:scale(1);}
+  .play-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(6,182,212,0.15));border:1px solid rgba(99,102,241,0.4);color:#fff;font-weight:600;font-size:0.9rem;padding:12px 24px;border-radius:50px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 0 20px rgba(99,102,241,0.1);}
+  .play-btn:hover{background:linear-gradient(135deg,rgba(99,102,241,0.3),rgba(6,182,212,0.3));border-color:rgba(99,102,241,0.8);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,0.3);}
+  .play-icon{width:26px;height:26px;border-radius:50%;background:#6366f1;display:flex;align-items:center;justify-content:center;color:#fff;}
 </style>
 </head>
 <body>
 
-<!-- Side Navigation Dots -->
 <nav id="nav" aria-label="Slide navigation"></nav>
 
 <!-- ═══════════════════════════════════════
@@ -88,13 +92,13 @@
   <div class="max-w-4xl px-8 text-center z-10">
     <div class="reveal inline-flex items-center gap-2 glass px-4 py-2 text-xs font-medium text-indigo-300 mb-8 mx-auto" style="width:fit-content;">
       <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block"></span>
-      Enterprise Computer Vision Platform
+      Edge AI Platform
     </div>
-    <h1 class="reveal reveal-d1 text-6xl md:text-8xl font-black tracking-tight mb-6 leading-none">
-      <span class="neon">Aero AI</span>
+    <h1 class="reveal reveal-d1 text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+      Stop Struggling.<br/><span class="neon">Start Deploying.</span>
     </h1>
-    <p class="reveal reveal-d2 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
-      Bridging the gap between <strong class="text-slate-200">AI research</strong> and <strong class="text-slate-200">real-world, scalable deployment</strong> — securely and efficiently, at the edge.
+    <p class="reveal reveal-d2 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-4">
+      Aero AI turns your raw footage into a <strong class="text-slate-200">working AI model on your edge device</strong> — without needing a dedicated ML team.
     </p>
     <div class="reveal reveal-d2 flex items-center justify-center gap-3 mb-8">
       <div class="h-px w-16 bg-slate-800"></div>
@@ -102,180 +106,244 @@
       <div class="h-px w-16 bg-slate-800"></div>
     </div>
     <div class="reveal reveal-d3 flex gap-4 justify-center flex-wrap">
-      <button class="btn-primary" onclick="document.getElementById('slide-1').scrollIntoView({behavior:'smooth'})">Explore the Proposal</button>
-      <button class="btn-outline" onclick="document.getElementById('slide-8').scrollIntoView({behavior:'smooth'})">Jump to CTA →</button>
+      <button class="btn-primary" onclick="document.getElementById('slide-1').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+      <button class="btn-outline" onclick="document.getElementById('slide-9').scrollIntoView({behavior:'smooth'})">Jump to CTA →</button>
     </div>
-    <p class="reveal reveal-d4 text-slate-600 text-sm mt-12">Scroll to navigate ↓</p>
+    <p class="reveal reveal-d4 text-slate-600 text-sm mt-10">Scroll to navigate ↓</p>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 2 — CHALLENGES
+     SLIDE 2 — WHO IS THIS FOR
 ═══════════════════════════════════════ -->
 <section id="slide-1" class="bg-grid">
-  <div class="blob w-80 h-80 bg-rose-700 top-0 right-0"></div>
+  <div class="blob w-80 h-80 bg-violet-700 top-0 right-0"></div>
   <div class="max-w-5xl px-8 w-full z-10">
-    <div class="mb-10">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">02 / The Problem</p>
-      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Understanding <span class="neon">Your Challenges</span></h2>
+    <div class="mb-8">
+      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">01 / Who Is This For</p>
+      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Built for <span class="neon">Anyone</span><br/>Who Needs AI on a Device</h2>
     </div>
-    <div class="grid md:grid-cols-2 gap-5">
-      <!-- Card 1 -->
-      <div class="reveal reveal-d1 glass p-6 flex gap-4">
-        <div class="icon-circle bg-rose-500/10 border border-rose-500/20">
-          <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-white mb-1">High Operational Costs</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Manual data labeling consumes <strong class="text-rose-400">~80%</strong> of CV project workloads, draining time and resources.</p>
-        </div>
+    <!-- Edge AI definition -->
+    <div class="reveal reveal-d2 glass px-5 py-4 mb-6 flex items-start gap-3 max-w-2xl">
+      <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div>
+        <p class="text-white font-semibold text-sm mb-1">What is Edge AI?</p>
+        <p class="text-slate-400 text-sm leading-relaxed">AI that runs <strong class="text-slate-200">directly on your device</strong> — your security camera, drone, or robot — not in the cloud. Faster. Private. Works offline.</p>
       </div>
-      <!-- Card 2 -->
-      <div class="reveal reveal-d2 glass p-6 flex gap-4">
-        <div class="icon-circle bg-amber-500/10 border border-amber-500/20">
-          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-white mb-1">The AI Talent Gap</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Shortage of ML experts prevents hardware & IT teams from independently building robust CV pipelines.</p>
-        </div>
+    </div>
+    <!-- 3 persona cards -->
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal reveal-d2 glass p-6 flex flex-col gap-3 relative overflow-hidden group hover:border-indigo-500/40 transition-all duration-300">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
+        <div class="text-3xl">🏪</div>
+        <h3 class="font-bold text-white text-base">You run a business</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">You have cameras, drones, or machines. You want AI to detect something specific — but you don't want to hire an ML team to do it.</p>
+        <p class="text-indigo-300 text-xs font-medium mt-auto">→ We already optimized the pipeline for you.</p>
       </div>
-      <!-- Card 3 -->
-      <div class="reveal reveal-d3 glass p-6 flex gap-4">
-        <div class="icon-circle bg-indigo-500/10 border border-indigo-500/20">
-          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-white mb-1">Deployment Friction</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">High complexity adapting models to diverse edge devices — NVIDIA, Intel, ARM — in the field.</p>
-        </div>
+      <div class="reveal reveal-d3 glass p-6 flex flex-col gap-3 relative overflow-hidden group hover:border-cyan-500/40 transition-all duration-300">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-teal-500"></div>
+        <div class="text-3xl">🎓</div>
+        <h3 class="font-bold text-white text-base">You're a student or researcher</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">You're learning, experimenting, or building a computer vision project on hardware. You want a platform — not a research lab setup.</p>
+        <p class="text-cyan-300 text-xs font-medium mt-auto">→ We have a package built for you.</p>
       </div>
-      <!-- Card 4 -->
-      <div class="reveal reveal-d4 glass p-6 flex gap-4">
-        <div class="icon-circle bg-cyan-500/10 border border-cyan-500/20">
-          <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-white mb-1">Data Security & Privacy</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Public clouds introduce unacceptable risks of exposing sensitive, proprietary video data.</p>
-        </div>
+      <div class="reveal reveal-d4 glass p-6 flex flex-col gap-3 relative overflow-hidden group hover:border-amber-500/40 transition-all duration-300">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-orange-500"></div>
+        <div class="text-3xl">🏭</div>
+        <h3 class="font-bold text-white text-base">You have a field team</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">You deploy at scale — factories, drone fleets, robot networks. Reliability, compliance, and data security are non-negotiable.</p>
+        <p class="text-amber-300 text-xs font-medium mt-auto">→ On-premise and enterprise options available.</p>
       </div>
+    </div>
+    <div class="reveal reveal-d5 mt-5 glass px-5 py-3 flex items-center gap-3" style="max-width:fit-content;">
+      <svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p class="text-slate-400 text-xs">We support the most common edge devices. <strong class="text-slate-200">Tell us what you have</strong> — we'll confirm compatibility upfront.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 3 — SOLUTION
+     SLIDE 3 — THE PROBLEM (real example)
 ═══════════════════════════════════════ -->
 <section id="slide-2" class="bg-grid">
-  <div class="blob w-96 h-96 bg-violet-700 bottom-0 left-0"></div>
+  <div class="blob w-80 h-80 bg-rose-700 top-0 left-0"></div>
   <div class="max-w-5xl px-8 w-full z-10">
-    <div class="mb-10">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">03 / The Solution</p>
-      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">The <span class="neon">Aero AI</span> Platform</h2>
-      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-xl">A unified platform built on three core pillars to eliminate every bottleneck.</p>
+    <div class="mb-8">
+      <p class="reveal text-rose-400 text-sm font-semibold uppercase tracking-widest mb-2">02 / The Problem</p>
+      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Building Edge AI <span class="neon">Today</span> Looks Like This</h2>
+      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">Let's say you manage a warehouse. You want your security camera to alert you when someone enters a restricted zone without a helmet. Simple enough, right?</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="reveal reveal-d1 glass p-7 flex flex-col gap-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
-        <div class="text-3xl font-black text-indigo-500/20">01</div>
-        <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
-        <h3 class="font-bold text-white text-lg">Accelerated Data Prep</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">AI-assisted annotation tools automate heavy lifting, reducing manual labeling effort by up to <strong class="text-indigo-300">70%</strong>.</p>
+    <div class="reveal reveal-d2 grid md:grid-cols-2 gap-8 items-start">
+      <!-- Left: steps -->
+      <div class="flex flex-col gap-3">
+        <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">What you'd have to do today ↓</p>
+        <div class="flex flex-col gap-2">
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">1</span>
+            <p class="text-slate-300 text-sm">Record hours of footage from your camera</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">2</span>
+            <p class="text-slate-300 text-sm">Manually extract thousands of frames</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">3</span>
+            <p class="text-slate-300 text-sm">Label every frame by hand — helmet / no helmet</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">4</span>
+            <p class="text-slate-300 text-sm">Find a training script, configure Python dependencies</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">5</span>
+            <p class="text-slate-300 text-sm">Figure out how to export for your specific edge GPU/CPU</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">6</span>
+            <p class="text-slate-300 text-sm">Deploy — and discover the model doesn't perform as expected</p>
+          </div>
+          <div class="glass p-3 flex items-center gap-3 border border-rose-500/20">
+            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">↺</span>
+            <p class="text-rose-300 text-sm font-medium">Start over. Again.</p>
+          </div>
+        </div>
       </div>
-      <div class="reveal reveal-d2 glass p-7 flex flex-col gap-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-purple-500"></div>
-        <div class="text-3xl font-black text-violet-500/20">02</div>
-        <svg class="w-8 h-8 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <h3 class="font-bold text-white text-lg">One-Click Training</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Removes the need for exhaustive hyperparameter tuning, empowering your existing engineering teams.</p>
-      </div>
-      <div class="reveal reveal-d3 glass p-7 flex flex-col gap-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-        <div class="text-3xl font-black text-cyan-500/20">03</div>
-        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        <h3 class="font-bold text-white text-lg">Seamless Deployment</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Write-once, deploy-anywhere architecture for CCTV, Robotics, Drones, and Industrial PCs.</p>
+      <!-- Right: impact summary -->
+      <div class="flex flex-col gap-4">
+        <div class="glass p-5">
+          <p class="text-slate-400 text-xs uppercase tracking-wider mb-3">The real cost</p>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-rose-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <p class="text-white font-semibold text-sm">Weeks to months</p>
+                <p class="text-slate-400 text-xs">Just for a single use case. Before you know if it works in production.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-rose-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <p class="text-white font-semibold text-sm">ML expertise required</p>
+                <p class="text-slate-400 text-xs">Python, CUDA, model optimization, hardware drivers — for every device.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-rose-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              <div>
+                <p class="text-white font-semibold text-sm">No test before deployment</p>
+                <p class="text-slate-400 text-xs">You only find out it doesn't work once it's already live.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="glass p-4 border border-rose-500/15">
+          <p class="text-slate-400 text-xs leading-relaxed">Most tools solve <strong class="text-white">one or two</strong> of these steps. Nobody solves the full pipeline — <strong class="text-rose-300">until now</strong>.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 4 — KEY CAPABILITIES
+     SLIDE 4 — AERO AI SOLUTION
 ═══════════════════════════════════════ -->
 <section id="slide-3" class="bg-grid">
-  <div class="blob w-72 h-72 bg-cyan-700 top-10 right-10"></div>
-  <div class="max-w-5xl px-8 w-full z-10">
-    <div class="mb-10">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">04 / Capabilities</p>
-      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Technical <span class="neon">Advantages</span></h2>
+  <div class="blob w-96 h-96 bg-violet-700 bottom-0 left-0"></div>
+  <div class="max-w-6xl px-8 w-full z-10">
+    <div class="mb-5">
+      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">03 / The Solution</p>
+      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Same Problem. <span class="neon">With Aero AI.</span></h2>
+      <p class="reveal reveal-d2 text-slate-400 mt-2 text-sm max-w-xl">Same warehouse. Same camera. Same goal — helmet violation detection. Here's the full workflow on our platform:</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-5">
-      <div class="reveal reveal-d1 glass p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="icon-circle bg-green-500/10 border border-green-500/20">
-            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+    <!-- 5-step horizontal pipeline with screenshots -->
+    <div class="reveal reveal-d2 flex items-start gap-2">
+      <!-- Step 01 -->
+      <div class="flex-1 flex flex-col gap-2 relative">
+        <div class="relative rounded-xl overflow-hidden thumb-wrap group" style="aspect-ratio:16/9;border:1px solid rgba(99,102,241,.35);" onclick="openLightbox(this)">
+          <img src="assets/step_01_upload.png" alt="Upload video" class="w-full h-full object-cover object-top thumb-img"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 pointer-events-none"><div class="step-num" style="width:20px;height:20px;font-size:.6rem;border-radius:50%;">01</div></div>
+          <div class="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/10 transition-colors pointer-events-none flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 drop-shadow-md transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
           </div>
-          <h3 class="font-semibold text-white">Accelerated Time-to-Market</h3>
         </div>
-        <p class="text-slate-400 text-sm">Drastically reduces development & deployment cycles for AI products.</p>
-        <div class="mt-4 bg-slate-800/60 rounded-full overflow-hidden"><div class="bar-fill" style="width:85%"></div></div>
-        <p class="text-xs text-slate-500 mt-1">Cycle reduction vs. traditional approach</p>
+        <p class="text-white font-semibold text-xs leading-tight px-1 mt-1">Upload Video</p>
+        <p class="text-slate-500 text-xs leading-relaxed px-1">Drop footage. We auto-cut into frames.</p>
       </div>
-      <div class="reveal reveal-d2 glass p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="icon-circle bg-purple-500/10 border border-purple-500/20">
-            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      <div class="text-indigo-600 text-sm shrink-0 mt-10">→</div>
+      <!-- Step 02 -->
+      <div class="flex-1 flex flex-col gap-2 relative">
+        <div class="relative rounded-xl overflow-hidden thumb-wrap group" style="aspect-ratio:16/9;border:1px solid rgba(99,102,241,.35);" onclick="openLightbox(this)">
+          <img src="assets/step_02_annotate.png" alt="AI annotation" class="w-full h-full object-cover object-top thumb-img"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 pointer-events-none"><div class="step-num" style="width:20px;height:20px;font-size:.6rem;border-radius:50%;">02</div></div>
+          <div class="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/10 transition-colors pointer-events-none flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 drop-shadow-md transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
           </div>
-          <h3 class="font-semibold text-white">Hardware Agnostic</h3>
         </div>
-        <p class="text-slate-400 text-sm">Supports NVIDIA Jetson, Intel NUC, ARM boards — eliminating vendor lock-in entirely.</p>
-        <div class="flex gap-2 mt-4 flex-wrap">
-          <span class="text-xs glass px-2 py-1 rounded text-slate-300">NVIDIA</span>
-          <span class="text-xs glass px-2 py-1 rounded text-slate-300">Intel</span>
-          <span class="text-xs glass px-2 py-1 rounded text-slate-300">ARM</span>
-          <span class="text-xs glass px-2 py-1 rounded text-slate-300">+ More</span>
-        </div>
+        <p class="text-white font-semibold text-xs leading-tight px-1 mt-1">AI Annotation</p>
+        <p class="text-slate-500 text-xs leading-relaxed px-1">AI pre-labels. You review and correct.</p>
       </div>
-      <div class="reveal reveal-d3 glass p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="icon-circle bg-cyan-500/10 border border-cyan-500/20">
-            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
-          </div>
-          <h3 class="font-semibold text-white">Flexible Data Architecture</h3>
-        </div>
-        <p class="text-slate-400 text-sm mb-3">Three deployment tiers — choose what fits your security posture.</p>
-        <div class="flex flex-col gap-2">
-          <div class="flex items-start gap-2">
-            <span class="text-xs px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 shrink-0 font-mono">01</span>
-            <p class="text-xs text-slate-400"><span class="text-white font-medium">Aero AI Cloud</span> — Upload your data directly to our platform. Fast, simple, ready in minutes.</p>
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-xs px-1.5 py-0.5 rounded bg-violet-500/10 border border-violet-500/20 text-violet-300 shrink-0 font-mono">02</span>
-            <p class="text-xs text-slate-400"><span class="text-white font-medium">Cloud API Bridge</span> — Connect to your existing cloud storage via private API. No re-uploading required.</p>
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-xs px-1.5 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-green-300 shrink-0 font-mono">03</span>
-            <p class="text-xs text-slate-400"><span class="text-white font-medium">On-Premise</span> — Platform runs inside your own servers. Maximum security, zero data leaves your network.</p>
+      <div class="text-indigo-600 text-sm shrink-0 mt-10">→</div>
+      <!-- Step 03 -->
+      <div class="flex-1 flex flex-col gap-2 relative">
+        <div class="relative rounded-xl overflow-hidden thumb-wrap group" style="aspect-ratio:16/9;border:1px solid rgba(99,102,241,.35);" onclick="openLightbox(this)">
+          <img src="assets/step_03_train.png" alt="One-click training" class="w-full h-full object-cover object-top thumb-img"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 pointer-events-none"><div class="step-num" style="width:20px;height:20px;font-size:.6rem;border-radius:50%;">03</div></div>
+          <div class="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/10 transition-colors pointer-events-none flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 drop-shadow-md transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
           </div>
         </div>
+        <p class="text-white font-semibold text-xs leading-tight px-1 mt-1">One-Click Training</p>
+        <p class="text-slate-500 text-xs leading-relaxed px-1">No code. No ML expertise. Define goal → hit run.</p>
       </div>
-      <div class="reveal reveal-d4 glass p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="icon-circle bg-amber-500/10 border border-amber-500/20">
-            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+      <div class="text-indigo-600 text-sm shrink-0 mt-10">→</div>
+      <!-- Step 04 -->
+      <div class="flex-1 flex flex-col gap-2 relative">
+        <div class="relative rounded-xl overflow-hidden thumb-wrap group" style="aspect-ratio:16/9;border:1px solid rgba(6,182,212,.4);" onclick="openLightbox(this)">
+          <img src="assets/step_04_test.png" alt="Edge simulator" class="w-full h-full object-cover object-top thumb-img"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 pointer-events-none"><div class="step-num" style="width:20px;height:20px;font-size:.6rem;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#10b981);">04</div></div>
+          <div class="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/10 transition-colors pointer-events-none flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 drop-shadow-md transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
           </div>
-          <h3 class="font-semibold text-white">Adaptive Data Standardization</h3>
         </div>
-        <p class="text-slate-400 text-sm">Built-in algorithms normalize image quality in harsh, low-light, and weather-impacted environments.</p>
-        <div class="mt-4 bg-slate-800/60 rounded-full overflow-hidden"><div class="bar-fill" style="width:70%; background:linear-gradient(90deg,#f59e0b,#f97316)"></div></div>
-        <p class="text-xs text-slate-500 mt-1">Image quality enhancement rate</p>
+        <p class="text-white font-semibold text-xs leading-tight px-1 mt-1">Edge Simulator</p>
+        <p class="text-slate-500 text-xs leading-relaxed px-1">Validate in edge-like env before real hardware.</p>
       </div>
+      <div class="text-indigo-600 text-sm shrink-0 mt-10">→</div>
+      <!-- Step 05 -->
+      <div class="flex-1 flex flex-col gap-2 relative">
+        <div class="relative rounded-xl overflow-hidden thumb-wrap group" style="aspect-ratio:16/9;border:1px solid rgba(6,182,212,.4);" onclick="openLightbox(this)">
+          <img src="assets/step_05_deploy.png" alt="Deploy to device" class="w-full h-full object-cover object-top thumb-img"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 pointer-events-none"><div class="step-num" style="width:20px;height:20px;font-size:.6rem;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#10b981);">05</div></div>
+          <div class="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/10 transition-colors pointer-events-none flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 drop-shadow-md transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </div>
+        <p class="text-white font-semibold text-xs leading-tight px-1 mt-1">Deploy to Device</p>
+        <p class="text-slate-500 text-xs leading-relaxed px-1">NVIDIA, Intel, ARM — optimized automatically.</p>
+      </div>
+    </div>
+    <!-- Outcome and Video Button -->
+    <div class="reveal reveal-d3 mt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
+      <div class="glass px-6 py-3.5 border border-green-500/20 flex items-center gap-3">
+        <div class="w-6 h-6 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center shrink-0">
+          <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <p class="text-sm"><span class="text-green-300 font-semibold">Your camera now detects helmet violations. Live.</span> <span class="text-slate-400">In days, not months.</span></p>
+      </div>
+      <button class="play-btn" onclick="openVideoModal()">
+        <div class="play-icon">
+          <svg class="w-3 h-3 translate-x-[1.5px]" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"/></svg>
+        </div>
+        Watch Full Workflow Demo
+      </button>
     </div>
   </div>
 </section>
-
 
 <!-- ═══════════════════════════════════════
      SLIDE 5 — VALUE BRIDGE
@@ -284,108 +352,85 @@
   <div class="blob w-80 h-80 bg-violet-700 top-0 left-0"></div>
   <div class="blob w-72 h-72 bg-cyan-700 bottom-0 right-0"></div>
   <div class="max-w-6xl px-6 w-full z-10">
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <p class="reveal text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">05 / Value Bridge</p>
+    <div class="text-center mb-7">
+      <p class="reveal text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">04 / Why It Matters</p>
       <h2 class="reveal reveal-d1 text-3xl md:text-4xl font-bold"><span class="neon">Engineer-Driven.</span> Business-Proven.</h2>
-      <p class="reveal reveal-d2 text-slate-400 text-sm mt-2 max-w-xl mx-auto">Aero AI is built for the teams who build — and automatically delivers the outcomes that leadership demands. One platform, zero compromise.</p>
+      <p class="reveal reveal-d2 text-slate-400 text-sm mt-2">Your team's pain points. Your leadership's outcomes. One platform for both.</p>
     </div>
+    <div class="reveal reveal-d2 grid md:grid-cols-11 gap-4 items-start">
 
-    <!-- Bridge Layout -->
-    <div class="reveal reveal-d2 grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
-
-      <!-- LEFT: Technical / Engineers -->
-      <div class="vb-col-left md:col-span-4 flex flex-col gap-3">
-        <div class="glass px-4 py-2 rounded-xl text-center mb-1">
-          <span class="text-indigo-300 font-bold text-xs uppercase tracking-widest">⚙ Engineers &amp; IT Teams</span>
+      <!-- LEFT: For Engineers -->
+      <div class="md:col-span-4 flex flex-col gap-3">
+        <div class="glass px-4 py-2 rounded-xl text-center">
+          <span class="text-indigo-300 font-bold text-xs uppercase tracking-widest">⚙ For Engineers</span>
         </div>
-        <!-- Stat badges -->
-        <div class="flex gap-2">
-          <div class="glass rounded-xl px-3 py-2 flex-1 text-center">
-            <p class="text-xl font-black neon">70%</p>
-            <p class="text-slate-500 text-xs">less setup time</p>
-          </div>
-          <div class="glass rounded-xl px-3 py-2 flex-1 text-center">
-            <p class="text-xl font-black" style="background:linear-gradient(135deg,#10b981,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">3×</p>
-            <p class="text-slate-500 text-xs">faster deploy</p>
+        <div class="glass p-4 rounded-xl gap-card">
+          <p class="text-indigo-300 font-semibold text-xs mb-1">Pain: Hours of manual annotation</p>
+          <p class="text-slate-400 text-xs">→ AI pre-labels frames. You review, not create.</p>
+          <div class="proof mt-2">
+            <p class="text-green-400 text-xs font-medium">~70% faster annotation</p>
+            <p class="text-slate-500 text-xs">Because labeling is automated — your effort shifts from creation to verification.</p>
           </div>
         </div>
-        <div class="vb-node">
-          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Manual labeling overhead</p>
-          <p class="text-slate-400 text-xs">→ <span class="text-white">70% reduction</span> via AI-assisted annotation</p>
+        <div class="glass p-4 rounded-xl gap-card">
+          <p class="text-indigo-300 font-semibold text-xs mb-1">Pain: CUDA drivers, exporting, config per device</p>
+          <p class="text-slate-400 text-xs">→ Hardware packaging handled by the platform.</p>
+          <div class="proof mt-2">
+            <p class="text-green-400 text-xs font-medium">~3× faster time to deployment</p>
+            <p class="text-slate-500 text-xs">Optimization, export, and device packaging are automated — not manual.</p>
+          </div>
         </div>
-        <div class="vb-node">
-          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Complex hyperparameter tuning</p>
-          <p class="text-slate-400 text-xs">→ <span class="text-white">One-Click Training</span>, no ML expertise needed</p>
-        </div>
-        <div class="vb-node">
-          <p class="text-indigo-300 font-semibold text-xs mb-0.5">Pain: Multi-hardware deployment chaos</p>
-          <p class="text-slate-400 text-xs">→ <span class="text-white">Hardware-agnostic</span> deploy across NVIDIA, Intel, ARM</p>
+        <div class="glass p-4 rounded-xl gap-card">
+          <p class="text-indigo-300 font-semibold text-xs mb-1">Pain: Model fails after it's already deployed</p>
+          <p class="text-slate-400 text-xs">→ Test simulator before you ever touch real hardware.</p>
         </div>
       </div>
 
-      <!-- CENTER: Aero AI Core + SVG connectors -->
-      <div class="md:col-span-3 flex flex-col items-center gap-4">
-        <!-- Shared Value Node at TOP -->
-        <div class="vb-shared w-full reveal reveal-d3">
+      <!-- CENTER -->
+      <div class="md:col-span-3 flex flex-col items-center gap-3">
+        <div class="glass rounded-xl px-4 py-3 text-center w-full border border-amber-500/20">
           <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">✦ Shared Goal</div>
-          <p class="text-slate-200 font-semibold text-sm leading-snug">Optimize time &amp; effort to<br/>train &amp; deploy AI on Edge</p>
-          <p class="text-slate-500 text-xs mt-1">with best-in-class results</p>
+          <p class="text-slate-200 font-semibold text-sm leading-snug">Get a working AI on your edge device — faster and with more confidence.</p>
         </div>
-
-        <!-- SVG flow lines -->
-        <svg class="w-full" style="height:36px;overflow:visible;" viewBox="0 0 200 36" preserveAspectRatio="none">
-          <line class="flow-line" x1="20" y1="0" x2="100" y2="36" stroke="rgba(245,158,11,0.5)" stroke-width="1.5"/>
-          <line class="flow-line" x1="180" y1="0" x2="100" y2="36" stroke="rgba(245,158,11,0.5)" stroke-width="1.5"/>
+        <svg class="w-full" style="height:30px;overflow:visible;" viewBox="0 0 200 30" preserveAspectRatio="none">
+          <line class="flow-line" x1="20" y1="0" x2="100" y2="30" stroke="rgba(245,158,11,.5)" stroke-width="1.5"/>
+          <line class="flow-line" x1="180" y1="0" x2="100" y2="30" stroke="rgba(245,158,11,.5)" stroke-width="1.5"/>
         </svg>
-
-        <!-- Core node -->
-        <div class="vb-core pulse-core text-center">
+        <div class="vb-core text-center w-full">
           <div class="text-xs font-medium opacity-70 mb-1 tracking-widest">POWERED BY</div>
           <div class="text-xl font-black">Aero AI</div>
-          <div class="text-xs opacity-60 mt-1">End-to-End CV Platform</div>
+          <div class="text-xs opacity-60 mt-1">End-to-End Edge AI Platform</div>
         </div>
-
-        <!-- SVG flow lines down -->
-        <svg class="w-full" style="height:36px;overflow:visible;" viewBox="0 0 200 36" preserveAspectRatio="none">
-          <line class="flow-line" x1="100" y1="0" x2="20" y2="36" stroke="rgba(99,102,241,0.5)" stroke-width="1.5"/>
-          <line class="flow-line" x1="100" y1="0" x2="180" y2="36" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+        <svg class="w-full" style="height:30px;overflow:visible;" viewBox="0 0 200 30" preserveAspectRatio="none">
+          <line class="flow-line" x1="100" y1="0" x2="20" y2="30" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+          <line class="flow-line" x1="100" y1="0" x2="180" y2="30" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
         </svg>
-
-        <!-- Outcome badge -->
         <div class="glass rounded-xl px-4 py-2 text-center w-full">
           <p class="text-xs text-slate-400">Outcome</p>
-          <p class="text-sm font-bold text-white">Faster · Smarter · Secure</p>
+          <p class="text-sm font-bold text-white">Faster · Reliable · On Your Hardware</p>
         </div>
       </div>
 
-      <!-- RIGHT: Business / Decision Makers -->
-      <div class="vb-col-right md:col-span-4 flex flex-col gap-3">
-        <div class="glass px-4 py-2 rounded-xl text-center mb-1">
-          <span class="text-cyan-300 font-bold text-xs uppercase tracking-widest">💼 Business &amp; Executives</span>
+      <!-- RIGHT: For Decision Makers -->
+      <div class="md:col-span-4 flex flex-col gap-3">
+        <div class="glass px-4 py-2 rounded-xl text-center">
+          <span class="text-cyan-300 font-bold text-xs uppercase tracking-widest">💼 For Decision Makers</span>
         </div>
-        <!-- Stat badges -->
-        <div class="flex gap-2">
-          <div class="glass rounded-xl px-3 py-2 flex-1 text-center">
-            <p class="text-xl font-black" style="background:linear-gradient(135deg,#10b981,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</p>
-            <p class="text-slate-500 text-xs">data control</p>
-          </div>
-          <div class="glass rounded-xl px-3 py-2 flex-1 text-center">
-            <p class="text-xl font-black" style="background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">↓ Risk</p>
-            <p class="text-slate-500 text-xs">accidents &amp; compliance</p>
+        <div class="glass p-4 rounded-xl" style="border-right:2px solid rgba(6,182,212,.4);">
+          <p class="text-cyan-300 font-semibold text-xs mb-1 text-right">Goal: No ML team required</p>
+          <p class="text-slate-400 text-xs text-right">Your existing engineers can run the full pipeline.</p>
+          <div class="proof mt-2 border-left-0" style="border-left:none;border-right:2px solid rgba(16,185,129,.3);padding-right:10px;padding-left:0;text-align:right;">
+            <p class="text-green-400 text-xs font-medium">Lower hiring cost</p>
+            <p class="text-slate-500 text-xs">Platform replaces the need for specialist ML roles for standard use cases.</p>
           </div>
         </div>
-        <div class="vb-node text-right">
-          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Reduce AI project cost</p>
-          <p class="text-slate-400 text-xs"><span class="text-white">3× faster</span> time-to-market ←</p>
+        <div class="glass p-4 rounded-xl" style="border-right:2px solid rgba(6,182,212,.4);">
+          <p class="text-cyan-300 font-semibold text-xs mb-1 text-right">Goal: Predictable timeline</p>
+          <p class="text-slate-400 text-xs text-right">Days to first working model — not months of uncertainty.</p>
         </div>
-        <div class="vb-node text-right">
-          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Ensure data sovereignty</p>
-          <p class="text-slate-400 text-xs"><span class="text-white">Flexible tiers</span> — cloud to full on-premise ←</p>
-        </div>
-        <div class="vb-node text-right">
-          <p class="text-cyan-300 font-semibold text-xs mb-0.5">Goal: Guarantee compliance</p>
-          <p class="text-slate-400 text-xs"><span class="text-white">Regulatory-ready</span> architecture ←</p>
+        <div class="glass p-4 rounded-xl" style="border-right:2px solid rgba(6,182,212,.4);">
+          <p class="text-cyan-300 font-semibold text-xs mb-1 text-right">Goal: Data stays in your control</p>
+          <p class="text-slate-400 text-xs text-right">Choose your tier — cloud, API bridge, or fully on-premise.</p>
         </div>
       </div>
     </div>
@@ -393,67 +438,115 @@
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 6 — USE CASES: APPLICATIONS
+     SLIDE 6 — THE MARKET GAP
 ═══════════════════════════════════════ -->
 <section id="slide-5" class="bg-grid">
-  <div class="blob w-96 h-96 bg-teal-700 bottom-0 left-0"></div>
-  <div class="blob w-64 h-64 bg-indigo-700 top-0 right-0"></div>
+  <div class="blob w-80 h-80 bg-rose-800 top-0 right-0"></div>
   <div class="max-w-5xl px-8 w-full z-10">
-    <div class="mb-10">
+    <div class="mb-8">
+      <p class="reveal text-rose-400 text-sm font-semibold uppercase tracking-widest mb-2">05 / The Gap</p>
+      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">What <span class="neon">Existing Tools</span> Don't Cover</h2>
+      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">Most AI tools are built for the cloud. Edge is a different game — and those tools consistently fall short in the same four ways.</p>
+    </div>
+    <div class="reveal reveal-d2 grid md:grid-cols-2 gap-5">
+      <div class="glass p-6 gap-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="icon-circle bg-rose-500/10 border border-rose-500/20">
+            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm">Cloud training ≠ Edge performance</h3>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">A model trained for cloud inference often fails or runs slowly on edge hardware. Different chips require different optimization — and most tools don't do that for you.</p>
+      </div>
+      <div class="glass p-6 gap-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="icon-circle bg-amber-500/10 border border-amber-500/20">
+            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm">No video → annotation pipeline</h3>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">One 10-minute video = thousands of frames. Generic annotation tools make you extract and label them one by one. That's hours of work before you even start training.</p>
+      </div>
+      <div class="glass p-6 gap-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="icon-circle bg-indigo-500/10 border border-indigo-500/20">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm">No pre-deployment test environment</h3>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">Most workflows have no way to validate model performance on an edge-like environment before going live. You find out it fails in production — not before.</p>
+      </div>
+      <div class="glass p-6 gap-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="icon-circle bg-purple-500/10 border border-purple-500/20">
+            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm">Hardware lock-in</h3>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">Switch from NVIDIA to Intel? In most tools, that means rebuilding your entire deployment pipeline. Every. Time. Aero AI is hardware-agnostic by design.</p>
+      </div>
+    </div>
+    <div class="reveal reveal-d3 mt-5 glass px-5 py-3 border border-indigo-500/20" style="max-width:fit-content;">
+      <p class="text-slate-300 text-sm">These gaps are the norm — not the exception. <strong class="text-indigo-300">Aero AI was built specifically to fill them.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 7 — USE CASES
+═══════════════════════════════════════ -->
+<section id="slide-6" class="bg-grid">
+  <div class="blob w-96 h-96 bg-teal-700 bottom-0 left-0"></div>
+  <div class="max-w-5xl px-8 w-full z-10">
+    <div class="mb-8">
       <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">06 / Use Cases</p>
       <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">Where Aero AI <span class="neon">Runs in the Field</span></h2>
-      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-2xl">Three core application domains. Each powered by edge-native, real-time computer vision.</p>
+      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-2xl text-sm">Three domains. All running AI on-device — no cloud streaming, no connectivity dependency.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
-      <!-- App 1: Smart Surveillance -->
       <div class="reveal reveal-d1 glass p-7 flex flex-col gap-4 relative overflow-hidden group hover:border-indigo-500/40 transition-all duration-300">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
         <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
           <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.806v6.388a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
         </div>
         <div>
-          <h3 class="font-bold text-white text-lg mb-1">Smart Surveillance</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">AI-powered monitoring that runs locally — no cloud streaming required.</p>
+          <h3 class="font-bold text-white text-lg mb-2">Smart Surveillance</h3>
+          <p class="text-slate-400 text-sm leading-relaxed"><strong class="text-slate-200">Example:</strong> A retail chain deploys AI across 200 cameras to detect shoplifting patterns — processing locally, cutting bandwidth costs by up to 95%. No video ever sent to cloud.</p>
         </div>
         <div class="flex flex-wrap gap-2 mt-auto">
           <span class="text-xs px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">ANPR</span>
-          <span class="text-xs px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">Smart Traffic</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">HSE Safety</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">Fire Detection</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">Retail Analytics</span>
         </div>
       </div>
-      <!-- App 2: Aerial Intel -->
       <div class="reveal reveal-d2 glass p-7 flex flex-col gap-4 relative overflow-hidden group hover:border-cyan-500/40 transition-all duration-300">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-teal-500"></div>
         <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
           <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
         </div>
         <div>
-          <h3 class="font-bold text-white text-lg mb-1">Aerial Intel (Drones)</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">On-board AI that works fully offline — no 4G/5G dependency in the field.</p>
+          <h3 class="font-bold text-white text-lg mb-2">Aerial Intel (Drones)</h3>
+          <p class="text-slate-400 text-sm leading-relaxed"><strong class="text-slate-200">Example:</strong> A utilities company inspects 500km of power lines with drones — defects are auto-tagged during the flight. No 4G needed. No manual video review.</p>
         </div>
         <div class="flex flex-wrap gap-2 mt-auto">
           <span class="text-xs px-2 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">Infrastructure Inspection</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">Precision Agriculture</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">SAR</span>
-          <span class="text-xs px-2 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">Environmental Surveillance</span>
         </div>
       </div>
-      <!-- App 3: Robotics -->
       <div class="reveal reveal-d3 glass p-7 flex flex-col gap-4 relative overflow-hidden group hover:border-amber-500/40 transition-all duration-300">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-orange-500"></div>
         <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
           <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
         <div>
-          <h3 class="font-bold text-white text-lg mb-1">Robotics &amp; Autonomy</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Edge AI giving robots an on-board brain — independent of Wi-Fi or cloud.</p>
+          <h3 class="font-bold text-white text-lg mb-2">Robotics &amp; Autonomy</h3>
+          <p class="text-slate-400 text-sm leading-relaxed"><strong class="text-slate-200">Example:</strong> A factory's conveyor QC robot catches defects at full line speed — on-board AI, zero cloud latency, zero connectivity dependency.</p>
         </div>
         <div class="flex flex-wrap gap-2 mt-auto">
           <span class="text-xs px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300">AMR Navigation</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300">Conveyor QC</span>
-          <span class="text-xs px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300">Service Robots</span>
           <span class="text-xs px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300">Agricultural Robotics</span>
         </div>
       </div>
@@ -462,138 +555,131 @@
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 7 — USE CASE DETAILS
-═══════════════════════════════════════ -->
-<section id="slide-6" class="bg-grid">
-  <div class="blob w-72 h-72 bg-violet-700 top-0 right-0"></div>
-  <div class="blob w-64 h-64 bg-teal-700 bottom-0 left-0"></div>
-  <div class="max-w-6xl px-6 w-full z-10">
-    <div class="text-center mb-7">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">07 / Use Case Details</p>
-      <h2 class="reveal reveal-d1 text-3xl md:text-4xl font-bold">Real Problems. <span class="neon">Real Solutions.</span></h2>
-    </div>
-    <div class="reveal reveal-d2 grid md:grid-cols-3 gap-5">
-
-      <!-- Col 1: Smart Surveillance -->
-      <div class="flex flex-col gap-3">
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-2 h-2 rounded-full bg-indigo-400"></div>
-          <span class="text-indigo-300 font-semibold text-xs uppercase tracking-widest">Smart Surveillance</span>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">ANPR &amp; Smart Traffic</p>
-          <p class="text-slate-400 text-xs leading-relaxed">Edge processing eliminates 24/7 cloud streaming — cuts bandwidth costs by up to <span class="text-indigo-300 font-medium">95%</span>.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">HSE Safety</p>
-          <p class="text-slate-400 text-xs leading-relaxed">PPE detection &amp; zone intrusion trigger on-site alarms in <span class="text-indigo-300 font-medium">&lt;30ms</span> — before accidents happen.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">Fire &amp; Retail Analytics</p>
-          <p class="text-slate-400 text-xs leading-relaxed">Early fire warnings + privacy-safe retail heatmaps processed on-device. <span class="text-indigo-300 font-medium">No facial data leaves the site.</span></p>
-        </div>
-      </div>
-
-      <!-- Col 2: Aerial Intel -->
-      <div class="flex flex-col gap-3">
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
-          <span class="text-cyan-300 font-semibold text-xs uppercase tracking-widest">Aerial Intel</span>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">Infrastructure Inspection</p>
-          <p class="text-slate-400 text-xs leading-relaxed">AI auto-tags defects on power lines &amp; dams <span class="text-cyan-300 font-medium">in-flight</span> — no manual review of GBs of footage.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">Precision Agriculture</p>
-          <p class="text-slate-400 text-xs leading-relaxed">Fully <span class="text-cyan-300 font-medium">offline</span> pest &amp; crop health detection — autonomous action without 4G/5G.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">SAR &amp; Environmental</p>
-          <p class="text-slate-400 text-xs leading-relaxed">AI highlights targets in disaster zones &amp; sends alerts only on detection — <span class="text-cyan-300 font-medium">extends battery life significantly.</span></p>
-        </div>
-      </div>
-
-      <!-- Col 3: Robotics -->
-      <div class="flex flex-col gap-3">
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-2 h-2 rounded-full bg-amber-400"></div>
-          <span class="text-amber-300 font-semibold text-xs uppercase tracking-widest">Robotics &amp; Autonomy</span>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">AMR Navigation</p>
-          <p class="text-slate-400 text-xs leading-relaxed">On-board AI keeps robots navigating safely in warehouses even in <span class="text-amber-300 font-medium">Wi-Fi dead zones</span>.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">Conveyor QC</p>
-          <p class="text-slate-400 text-xs leading-relaxed">High-speed defect detection on specialized edge chips — <span class="text-amber-300 font-medium">zero cloud latency</span>, zero missed rejects.</p>
-        </div>
-        <div class="glass p-4 rounded-xl">
-          <p class="text-white font-semibold text-xs mb-1">Service &amp; Agricultural Robots</p>
-          <p class="text-slate-400 text-xs leading-relaxed">Hardware-optimized models stay <span class="text-amber-300 font-medium">robust in extreme conditions</span> — dust, rain, shifting light.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 8 — PLATFORM OVERVIEW
+     SLIDE 8 — PLATFORM
 ═══════════════════════════════════════ -->
 <section id="slide-7" class="bg-grid">
   <div class="blob w-72 h-72 bg-purple-700 top-0 left-0"></div>
   <div class="max-w-5xl px-8 w-full z-10">
-    <div class="mb-10">
-      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">08 / Platform</p>
+    <div class="mb-8">
+      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">07 / Platform</p>
       <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">What You <span class="neon">Get</span></h2>
+      <p class="reveal reveal-d2 text-slate-400 mt-3 max-w-xl text-sm">Three core components your team works with on every project.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-5">
       <div class="reveal reveal-d1 glass p-7 flex flex-col gap-4 group hover:border-indigo-500/40 transition-all duration-300">
         <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
         </div>
-        <h3 class="font-bold text-white text-lg">Admin Portal</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">A centralized, intuitive interface for managing AI models, deployments, and edge device fleets.</p>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-2">User Portal</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Your control center. Upload data, manage annotation, trigger training, monitor model versions, and oversee deployments — all in one interface. No command line required.</p>
+        </div>
         <div class="mt-auto pt-2 border-t border-white/5">
-          <span class="text-xs text-indigo-400 font-medium">Model Management · Fleet Control</span>
+          <span class="text-xs text-indigo-400 font-medium">Data · Training · Deployment</span>
         </div>
       </div>
-      <div class="reveal reveal-d2 glass p-7 flex flex-col gap-4 group hover:border-violet-500/40 transition-all duration-300">
-        <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-        </div>
-        <h3 class="font-bold text-white text-lg">Monitoring Dashboard</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Real-time analytics tracking model performance, accuracy, and system health post-deployment.</p>
-        <div class="mt-auto pt-2 border-t border-white/5">
-          <span class="text-xs text-violet-400 font-medium">Live Metrics · Health Alerts</span>
-        </div>
-      </div>
-      <div class="reveal reveal-d3 glass p-7 flex flex-col gap-4 group hover:border-cyan-500/40 transition-all duration-300">
+      <div class="reveal reveal-d2 glass p-7 flex flex-col gap-4 group hover:border-cyan-500/40 transition-all duration-300">
         <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
-        <h3 class="font-bold text-white text-lg">Model Zoo</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Pre-trained, industry-specific models for security, traffic management, and industrial safety.</p>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-2">Test Simulator</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Before touching real hardware, validate your model in our edge-simulated environment. We target 70–80%+ accuracy threshold — so you go live with confidence, not guesswork.</p>
+          <p class="text-slate-500 text-xs mt-3 leading-relaxed">Tell us your edge device — if it's in our supported list, we'll confirm. If your model needs optimization, request it. We prioritize based on demand.</p>
+        </div>
         <div class="mt-auto pt-2 border-t border-white/5">
-          <span class="text-xs text-cyan-400 font-medium">Security · Traffic · Industrial</span>
+          <span class="text-xs text-cyan-400 font-medium">Pre-deployment Validation</span>
         </div>
       </div>
+      <div class="reveal reveal-d3 glass p-7 flex flex-col gap-4 group hover:border-violet-500/40 transition-all duration-300">
+        <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-2">Model Zoo</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Pre-trained, industry-specific models for the most common use cases — security surveillance, traffic management, industrial safety. Deploy immediately. Fine-tune as your data grows.</p>
+        </div>
+        <div class="mt-auto pt-2 border-t border-white/5 flex items-center gap-2">
+          <span class="text-xs text-violet-400 font-medium">Security · Traffic · Industrial</span>
+          <span class="badge-upcoming">+ More</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-d4 mt-4 glass px-5 py-3 flex items-center gap-3" style="max-width:fit-content;">
+      <span class="badge-upcoming">Upcoming</span>
+      <p class="text-slate-400 text-xs">Workflow customization — ability to modify your training pipeline stages. Coming soon.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     SLIDE 8 — CTA
+     SLIDE 9 — PACKAGES
 ═══════════════════════════════════════ -->
 <section id="slide-8" class="bg-grid">
+  <div class="blob w-80 h-80 bg-indigo-700 bottom-0 right-0"></div>
+  <div class="blob w-60 h-60 bg-violet-700 top-0 left-0"></div>
+  <div class="max-w-4xl px-8 w-full z-10">
+    <div class="mb-8 text-center">
+      <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-2">08 / Packages</p>
+      <h2 class="reveal reveal-d1 text-4xl md:text-5xl font-bold">A Package for <span class="neon">Every Need</span></h2>
+      <p class="reveal reveal-d2 text-slate-400 mt-3 text-sm">From students to enterprises. Not sure which fits? Just talk to us.</p>
+    </div>
+    <div class="reveal reveal-d2 grid md:grid-cols-3 gap-5">
+      <!-- Student -->
+      <div class="glass p-7 flex flex-col gap-4">
+        <div class="text-2xl">🎓</div>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-1">Student / Researcher</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">For learners and individual researchers. Experiment with the full pipeline on limited quota. Build your portfolio, learn edge AI for real.</p>
+        </div>
+        <div class="mt-auto">
+          <button class="btn-outline w-full text-sm py-2.5 px-4" onclick="window.location.href='mailto:contact@aeroai.io'">Get Started</button>
+        </div>
+      </div>
+      <!-- Standard -->
+      <div class="tier-popular p-7 flex flex-col gap-4 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-cyan-500"></div>
+        <div class="flex items-center gap-2">
+          <div class="text-2xl">🏪</div>
+          <span class="badge-upcoming" style="background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.4);color:#a5b4fc;">Most Popular</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-1">Standard</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">For SMBs and field teams. Full pipeline access, commercial use, standard edge device support. When you're ready to put AI to work.</p>
+        </div>
+        <div class="mt-auto">
+          <button class="btn-primary w-full text-sm py-2.5 px-4" onclick="window.location.href='mailto:contact@aeroai.io'">Contact Sales</button>
+        </div>
+      </div>
+      <!-- Enterprise -->
+      <div class="glass p-7 flex flex-col gap-4">
+        <div class="text-2xl">🏭</div>
+        <div>
+          <h3 class="font-bold text-white text-lg mb-1">Enterprise</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Dedicated support, custom edge device compatibility, on-premise deployment, and SLA. For teams where reliability is non-negotiable.</p>
+        </div>
+        <div class="mt-auto">
+          <button class="btn-outline w-full text-sm py-2.5 px-4" onclick="window.location.href='mailto:contact@aeroai.io'">Talk to Us</button>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-d4 mt-5 text-center">
+      <p class="text-slate-500 text-xs">We focus on the most common edge use cases. <strong class="text-slate-400">Not sure if we cover yours?</strong> Ask — we'll tell you honestly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 10 — CTA
+═══════════════════════════════════════ -->
+<section id="slide-9" class="bg-grid">
   <div class="blob w-96 h-96 bg-indigo-700 top-0 left-1/2 -translate-x-1/2"></div>
   <div class="blob w-64 h-64 bg-cyan-700 bottom-0 right-0"></div>
   <div class="max-w-3xl px-8 text-center z-10">
     <p class="reveal text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-4">09 / Next Steps</p>
     <h2 class="reveal reveal-d1 text-5xl md:text-6xl font-black mb-6">Let's Build Your <span class="neon">AI Future</span></h2>
     <p class="reveal reveal-d2 text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-      Experience the Aero AI platform in your own environment. Schedule a personalized demo or pilot a <strong class="text-white">Proof of Concept (PoC)</strong> to transform your vision data into actionable, secure intelligence.
+      The best way to evaluate Aero AI is to see it work on <strong class="text-white">your use case, your data, your device</strong>. We'll walk you through it — no commitment required.
     </p>
     <div class="reveal reveal-d3 flex gap-4 justify-center flex-wrap mb-12">
       <button class="btn-primary text-base px-8 py-4" onclick="window.location.href='mailto:contact@aeroai.io'">Schedule a Demo</button>
@@ -614,43 +700,83 @@
   </div>
 </section>
 
+<!-- Lightbox Modal -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lb-img" src="" alt="Expanded View" onclick="event.stopPropagation()"/>
+  <button onclick="closeLightbox()" class="absolute top-6 right-8 text-white/60 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full backdrop-blur-md transition-all">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+</div>
+
+<!-- Video Modal -->
+<div id="video-modal" onclick="closeVideoModal(event)">
+  <div class="relative max-w-5xl w-full mx-4 flex flex-col items-center" onclick="event.stopPropagation()">
+    <video id="demo-video" src="assets/demo.mp4" controls preload="none" class="w-full h-auto aspect-video"></video>
+    <button onclick="closeVideoModal()" class="absolute -top-12 right-0 text-white/60 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full backdrop-blur-md transition-all">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</div>
+
 <script>
-// ── Navigation dots ──────────────────────────
+// Navigation logic
 const slides = document.querySelectorAll('section');
 const nav = document.getElementById('nav');
-slides.forEach((_, i) => {
+slides.forEach((_,i)=>{
   const btn = document.createElement('button');
-  btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
-  btn.onclick = () => slides[i].scrollIntoView({behavior:'smooth'});
+  btn.setAttribute('aria-label',`Go to slide ${i+1}`);
+  btn.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});
   nav.appendChild(btn);
 });
-
-// ── Active dot + reveal animations ───────────
-const revealEls = document.querySelectorAll('.reveal');
 const dots = nav.querySelectorAll('button');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      // Update active dot
-      const slideIdx = Array.from(slides).indexOf(entry.target);
-      if (slideIdx > -1) {
-        dots.forEach((d, i) => d.classList.toggle('active', i === slideIdx));
-      }
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const idx=Array.from(slides).indexOf(e.target);
+      if(idx>-1) dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
     }
   });
-}, { threshold: 0.4 });
+},{threshold:0.4});
+slides.forEach(s=>observer.observe(s));
+const revealObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.15});
+revealEls.forEach(el=>revealObs.observe(el));
 
-slides.forEach(s => observer.observe(s));
+// Lightbox & Modal logic
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const videoModal = document.getElementById('video-modal');
+const demoVideo = document.getElementById('demo-video');
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.15 });
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  lbImg.src = img.src;
+  lightbox.classList.add('active');
+}
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  setTimeout(() => { lbImg.src = ''; }, 400);
+}
 
-revealEls.forEach(el => revealObserver.observe(el));
+function openVideoModal() {
+  videoModal.classList.add('active');
+  demoVideo.play().catch(e => console.log("Play interrupted or not started."));
+}
+function closeVideoModal(e) {
+  if(e && e.target !== videoModal && !e.target.closest('button')) return;
+  videoModal.classList.remove('active');
+  demoVideo.pause();
+}
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    closeLightbox();
+    closeVideoModal();
+  }
+});
 </script>
 </body>
 </html>
