@@ -178,33 +178,101 @@
       <div class="flex flex-col gap-3">
         <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold mb-1">What you'd have to do today ↓</p>
         <div class="flex flex-col gap-2">
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">1</span>
-            <p class="text-slate-300 text-sm">Record hours of footage from your camera</p>
+          
+          <!-- Step 1 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">1</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Record hours of footage from your camera</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_1.png" alt="Security Camera Footage" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">2</span>
-            <p class="text-slate-300 text-sm">Manually extract thousands of frames</p>
+
+          <!-- Step 2 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">2</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Manually extract thousands of frames</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_2.png" alt="Extracting Frames" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">3</span>
-            <p class="text-slate-300 text-sm">Label every frame by hand — helmet / no helmet</p>
+
+          <!-- Step 3 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">3</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Label every frame by hand — helmet / no helmet</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_3.png" alt="Labeling Image" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">4</span>
-            <p class="text-slate-300 text-sm">Find a training script, configure Python dependencies</p>
+
+          <!-- Step 4 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">4</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Find a training script, configure Python dependencies</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_4.png" alt="Python Error Script" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">5</span>
-            <p class="text-slate-300 text-sm">Figure out how to export for your specific edge GPU/CPU</p>
+
+          <!-- Step 5 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">5</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Figure out how to export for your specific edge GPU/CPU</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_5.png" alt="Hardware Configuration" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3">
-            <span class="text-rose-400 font-bold text-sm w-5 shrink-0">6</span>
-            <p class="text-slate-300 text-sm">Deploy — and discover the model doesn't perform as expected</p>
+
+          <!-- Step 6 -->
+          <div class="glass p-3 flex flex-col group cursor-default transition-all duration-300 hover:border-rose-500/40 hover:bg-rose-900/10 relative">
+            <div class="flex items-center gap-3">
+              <span class="text-rose-400 font-bold text-sm w-5 shrink-0 transition-transform duration-300 group-hover:scale-110">6</span>
+              <p class="text-slate-300 text-sm font-medium transition-colors duration-300 group-hover:text-white">Deploy — and discover the model doesn't perform as expected</p>
+            </div>
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <div class="mt-3 w-full h-32 rounded-lg border border-rose-500/20 overflow-hidden relative shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                  <img src="assets/prob_step_6.png" alt="Poor Dashboard Metrics" class="w-full h-full object-cover"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-3 flex items-center gap-3 border border-rose-500/20">
+
+          <!-- Step 7 -->
+          <div class="glass p-3 flex items-center gap-3 border border-rose-500/30 bg-rose-500/5">
             <span class="text-rose-400 font-bold text-sm w-5 shrink-0">↺</span>
-            <p class="text-rose-300 text-sm font-medium">Start over. Again.</p>
+            <p class="text-rose-300 text-sm font-bold">Start over. Again.</p>
           </div>
         </div>
       </div>
